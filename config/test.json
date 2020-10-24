@@ -1,0 +1,5 @@
+{
+  "name": "your-turn - test",
+  "db": "mongodb://localhost/your-turn_tests",
+  "port": 8081
+}

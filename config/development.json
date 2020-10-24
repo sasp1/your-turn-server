@@ -1,0 +1,6 @@
+{
+  "name": "Your Turn - development",
+  "db": "mongodb://localhost/your-turn-dev",
+  "port": 8082,
+  "base-url": "/api-dev/"
+}
