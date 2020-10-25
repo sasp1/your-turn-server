@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-// const {auth, admin} = require("../middleware/auth");
+const {User, validate} = require("../models/user");
 
-
-// const userController = require("../controllers/userController");
 
 router.post('/', async (req, res) => {
-    res.send("Hey");
+    const {error} = validate(req.body);
+
+    if (error) return res.status(400).send(error)
+
+    res.send({_id: "hej"});
 });
 
 router.get('/', async (req, res) => {
