@@ -7,6 +7,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const users = require('./routes/users');
+const timeSlots = require('./routes/timeSlots');
 const error = require('./middleware/error');
 const morgan = require('morgan');
 const bodyParser = require("body-parser");
@@ -88,6 +89,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(endMiddleware);
 app.use(express.json());
 app.use(baseUrl + 'users', users);
+app.use(baseUrl + 'timeSlots', timeSlots);
 app.use(error);
 
 module.exports = app;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {User, validate} = require("../models/user");
+const {TimeSlot, validate} = require("../models/timeSlot");
 
 
 router.post('/', async (req, res) => {
@@ -8,15 +8,15 @@ router.post('/', async (req, res) => {
 
     if (error) return res.status(400).send(error)
 
-    const user = new User({name: req.body.name});
-    await user.save();
+    const timeSlot = new TimeSlot(req.body);
+    await timeSlot.save();
 
-    res.send(user);
+    res.send(timeSlot);
 });
 
 router.get('/', async (req, res) => {
-    const users = await User.find();
-    res.send(users);
+    const timeSlots = await TimeSlot.find();
+    res.send(timeSlots);
 });
 
 module.exports = router;
