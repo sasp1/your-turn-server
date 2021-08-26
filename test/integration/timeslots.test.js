@@ -1,4 +1,5 @@
 const {User} = require('../../models/user');
+const {TimeSlot} = require('../../models/timeSlot');
 const request = require('supertest');
 const app = require('../..');
 let server;
@@ -30,6 +31,7 @@ describe('/api/timeslots', () => {
     });
     afterEach(async () => {
         await User.deleteMany();
+        await TimeSlot.deleteMany();
         // await removeAllCollections();
     });
 
@@ -68,17 +70,24 @@ describe('/api/timeslots', () => {
 
 
     describe('GET /', () => {
+        let timeSlot;
 
-        beforeEach(() => {
+        beforeEach(async () => {
+            timeSlot = new TimeSlot( {
+                user: user.id,
+                timeStart: 50400,
+                timeEnd: 53940
+            });
 
+            await timeSlot.save();
         });
 
         const exec = () => {
             return request(server)
-                .get("/api/users");
+                .get("/api/timeSlots");
         };
 
-        it("Should return list with one user", async () => {
+        it("Should return list with one timeSlot", async () => {
             const res = await exec();
             expect(res.body.length).to.equal(1);
         });

@@ -15,7 +15,10 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
+
     const timeSlots = await TimeSlot.find();
+    console.log("timeslots", timeSlots);
+
     res.send(timeSlots);
 });
 
